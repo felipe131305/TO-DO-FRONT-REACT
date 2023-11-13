@@ -1,0 +1,12 @@
+{
+  "name": "mern_crud_auth-front",
+  "version": "1.0.0",
+  "description": "operaciones de crud con react y Nodejs front",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
