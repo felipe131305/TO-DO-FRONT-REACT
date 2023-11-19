@@ -17,22 +17,16 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErros] = useState([]);
   const [loading, setLoading] = useState(true);
-  const signup = async (user) => {};
 
   const singUp = async (user) => {
     try {
       const res = await registerRequest(user);
-      console.log(res.data);
       setUser(res.data);
       setIsAuthenticated(true);
     } catch (error) {
       if (Array.isArray(error.response.data)) {
-        console.log(error.response.data);
         return setErros(error.response.data);
       } else {
-        console.log(typeof error.response.data.message);
-
-        console.log([error.response.data.message]);
         setErros([error.response.data.message]);
       }
     }
@@ -41,21 +35,23 @@ export const AuthProvider = ({ children }) => {
   const signIn = async (user) => {
     try {
       const res = await loginRequest(user);
-      console.log(res);
       setIsAuthenticated(true);
       setUser(res.data);
     } catch (error) {
       if (Array.isArray(error.response.data)) {
-        console.log(error.response.data);
+
         return setErros(error.response.data);
       } else {
-        console.log(typeof error.response.data.message);
-
-        console.log([error.response.data.message]);
         setErros([error.response.data.message]);
       }
     }
   };
+
+  const logout = () =>{
+    Cookies.remove("token");
+    setIsAuthenticated(false);
+    setUser(null);
+  }
 
   useEffect(() => {
     if (errors.length > 0) {
@@ -76,9 +72,8 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        console.log(cookies.token)
+
         const res = await verifyTokenRequest(cookies.token);
-        console.log(res);
         if (!res.data) return setIsAuthenticated(false);
         setIsAuthenticated(true);
         setUser(res.data);
@@ -96,6 +91,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         singUp,
         signIn,
+        logout,
         user,
         isAuthenticated,
         errors,

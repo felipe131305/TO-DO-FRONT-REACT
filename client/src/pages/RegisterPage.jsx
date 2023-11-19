@@ -32,7 +32,7 @@ function RegisterPage() {
             {error}
           </div>
         ))}
-        <h2 className="text-2xl font-bold">Register</h2>
+        <h1 className="text-3xl font-bold my-2">Register</h1>
         <form onSubmit={onSubmit}>
           <input
             type="text"
