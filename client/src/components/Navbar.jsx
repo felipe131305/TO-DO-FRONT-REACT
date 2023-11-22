@@ -14,7 +14,7 @@ function Navbar() {
         {isAuthenticated ? (
           <>
             <li>
-              Welcom {user.username}
+              Welcome {user.username}
             </li>
             <li>
               <Link to="/add-task" className="bg-indigo-500 px-4 py-1 rounded-sm">Add Task</Link>
